@@ -1,0 +1,74 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "HeroGirl",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 0.38333333333333336,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "props": {},
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "14d4108c-e795-48d5-9ab7-3b95b01e90e8"
+            }
+          },
+          {
+            "frame": 0.05,
+            "value": {
+              "__uuid__": "4bf082ca-3650-4069-bdf9-e39984f2c4bd"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "07c9e890-5641-4cb2-be86-2a23f11cd4b7"
+            }
+          },
+          {
+            "frame": 0.15,
+            "value": {
+              "__uuid__": "3af3f81c-3654-45e9-b952-7f6855fe5b0c"
+            }
+          },
+          {
+            "frame": 0.2,
+            "value": {
+              "__uuid__": "738d56a3-5ad3-4e2b-a9a7-d0b5c016615d"
+            }
+          },
+          {
+            "frame": 0.25,
+            "value": {
+              "__uuid__": "c9585e70-669c-4630-8e3b-22310bed1c86"
+            }
+          },
+          {
+            "frame": 0.3,
+            "value": {
+              "__uuid__": "7e341231-7e74-4229-b084-8100c86c5546"
+            }
+          },
+          {
+            "frame": 0.35,
+            "value": {
+              "__uuid__": "81006484-dbdf-463b-bc35-13b333156a90"
+            }
+          },
+          {
+            "frame": 0.36666666666666664,
+            "value": {
+              "__uuid__": "e7351d40-3861-4da4-bdcb-061a5bd3dbe0"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

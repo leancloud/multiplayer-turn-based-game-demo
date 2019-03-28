@@ -1,0 +1,45 @@
+{
+  "name": "client-engine-nodejs-getting-started",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A sample LeanCloud Client Engine app",
+  "main": "build/index.js",
+  "scripts": {
+    "lint": "tslint src/*",
+    "lint:fix": "tslint src/* --fix",
+    "build": "tsc --build tsconfig.json",
+    "start": "node -r source-map-support/register build/index.js",
+    "dev": "npm run build && npm run start",
+    "postinstall": "npm run build"
+  },
+  "keywords": [
+    "leancloud",
+    "client-engine",
+    "master-client"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@leancloud/client-engine": "^0.8.0-beta.0",
+    "@leancloud/play": "^0.18.0-beta.0",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "debug": "^4.1.1",
+    "express": "^4.16.4",
+    "express-basic-auth": "^1.1.6",
+    "lodash": "^4.17.11",
+    "rxjs": "^6.4.0",
+    "source-map-support": "^0.5.11"
+  },
+  "engines": {
+    "node": "10.x"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.4",
+    "@types/debug": "0.0.31",
+    "@types/express": "^4.16.1",
+    "@types/lodash": "^4.14.123",
+    "axios": "^0.18.0",
+    "tslint": "^5.14.0",
+    "typescript": "^3.3.3333"
+  }
+}

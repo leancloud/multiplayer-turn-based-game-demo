@@ -1,0 +1,67 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "HeroGirlMiss",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 0.36666666666666664,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "f0380c76-27e2-483b-bcfc-fb71cbd26613"
+            }
+          },
+          {
+            "frame": 0.05,
+            "value": {
+              "__uuid__": "e2bf7a39-b6f2-433a-baf5-04460edf999d"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "dfe4b2aa-c51d-423d-8fdc-3a04ba07bd64"
+            }
+          },
+          {
+            "frame": 0.15,
+            "value": {
+              "__uuid__": "b1d89dfc-b868-4ea3-9b29-4c12c0af74fb"
+            }
+          },
+          {
+            "frame": 0.2,
+            "value": {
+              "__uuid__": "b73c50c2-d3ef-4861-abb2-05aa57e6322f"
+            }
+          },
+          {
+            "frame": 0.25,
+            "value": {
+              "__uuid__": "231d6009-e53c-4955-8c9d-017a28d28f0d"
+            }
+          },
+          {
+            "frame": 0.3,
+            "value": {
+              "__uuid__": "76f7db4e-a254-458f-9910-4d9263e3c390"
+            }
+          },
+          {
+            "frame": 0.35,
+            "value": {
+              "__uuid__": "170226c0-e11d-46bc-926e-0cca7639936a"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}
