@@ -39,7 +39,7 @@ npm install
 
 ## 实现方式
 
-服务端使用了 LeanCloud 实时对战云和 Client Engine 。客户端之间用实时对战云来通讯，游戏的逻辑写在 Client Engine 中，MasterClient 在 Client Engine 中控制房间内的逻辑。在游戏过程中，客户端将全部的事件发送给 MasterClient，由 MasterClient 在服务端执行相关逻辑后，再通过自定义事件指示客户端播放相关动画。
+客户端之间用实时对战云来通讯。MasterClient 在 Client Engine 中控制房间内的逻辑。在游戏过程中，客户端将全部的事件发送给 MasterClient，由 MasterClient 在服务端执行相关逻辑后，再通过自定义事件指示客户端播放相关动画。
 
 具体流程如下：
 
