@@ -82,7 +82,7 @@ npm install
 ## 主要功能实现介绍
 
 ### 快速开始
-随便找一个有空位的房间快速开始。服务端代码位于 `index.ts` 文件，详情请参考 LeanCloud 文档「快速开始」(https://leancloud.cn/docs/client-engine-first-game-node.html#hash-1870869335)。
+随便找一个有空位的房间快速开始。服务端代码位于 `index.ts` 文件，详情请参考 LeanCloud 文档[快速开始](https://leancloud.cn/docs/client-engine-first-game-node.html#hash-1870869335)。
 
 客户端代码位于 `Lobby.ts`，详细介绍请参考[入口 API：快速开始](https://leancloud.cn/docs/client-engine-first-game-node.html#hash-65842943)
 
