@@ -9,8 +9,8 @@ let client: Client;
 
 export const global = {
   client: client,
-  APP_ID: 'H2wuPscPB4vau8OdMA4zRyLm-gzGzoHsz',
-  APP_KEY: 'SAeIKtSNsqTNE3Di4hYmppLE',
+  APP_ID: 'VlqXg37sxQDFYtUUfVbSplwI-gzGzoHsz',
+  APP_KEY: 'YEh4M37o7Tunq59PIdEqJFC2',
   // roomRequestUrl: 'http://localhost:3000/reservation',
-  roomRequestUrl: 'http://localhost:3000/reservation'
+  roomRequestUrl: 'https://turn-game-client-engine.leanapp.cn/reservation'
 };

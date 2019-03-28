@@ -147,7 +147,7 @@ export default class NewClass extends cc.Component {
   }
 
   async onBackButtonClicked () {
-    await this.client.close();
+    await this.client.leaveRoom();
     cc.director.loadScene('Lobby');
   }
 

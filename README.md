@@ -1,6 +1,6 @@
 # 回合制在线对战 Demo
 
-这款 Demo 是用 LeanCloud 实时对战和 Client Engine 实现的一款回合制对战游戏，全部服务端及客户端的代码总共花费了约 7 天的时间。试玩链接：https://sssss
+这款 Demo 是用 LeanCloud 实时对战和 Client Engine 实现的一款回合制对战游戏，全部服务端及客户端的代码总共花费了约 7 天的时间。试玩链接：https://turn-game.leanapp.cn
 
 主要界面如下：
 
@@ -13,7 +13,7 @@
 安装 LeanCloud [命令行工具](https://leancloud.cn/docs/leanengine_cli.html#hash1443149115)。
 
 ```sh
-cd turn-based-demo-client-engine
+cd turn-based-game-client-engine
 lean login
 lean switch
 ```
@@ -25,7 +25,7 @@ DEBUG=ClientEngine*,RPS*,Play lean up
 ```
 
 ### 客户端
-客户端代码位于 `./turn-based-demo-client/assets` ，找到 `Global.ts` 文件，修改其中的 APP_ID 和 APP_KEY 和服务端选择的应用相同，`roomRequestUrl` 使用 `localhost:3000`。
+客户端代码位于 `./turn-based-game-client/assets` ，找到 `Global.ts` 文件，修改其中的 APP_ID 和 APP_KEY 和服务端选择的应用相同，`roomRequestUrl` 使用 `localhost:3000`。
 
 安装依赖：
 
@@ -33,7 +33,7 @@ DEBUG=ClientEngine*,RPS*,Play lean up
 npm install
 ```
 
-依赖安装完成后，使用 Cocos Creator 运行 `./turn-based-demo-client` 中的项目。
+依赖安装完成后，使用 Cocos Creator 运行 `./turn-based-game-client` 中的项目。
 
 
 ## 实现方式
@@ -52,7 +52,7 @@ npm install
 
 ### 服务端代码
 
-这里的服务端代码指的是 Client Engine 中的游戏逻辑代码，位于 `./turn-based-demo-client-engine/src`。
+这里的服务端代码指的是 Client Engine 中的游戏逻辑代码，位于 `./turn-based-game-client-engine/src`。
 
 ```
 ├── configs.ts        // 配置文件
@@ -67,7 +67,7 @@ npm install
 
 ### 客户端代码
 
-客户端位于 `./turn-based-demo-client/assets`。
+客户端位于 `./turn-based-game-client/assets`。
 
 ```
 ├── Global.ts        // 一些全局的配置或变量
