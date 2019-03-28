@@ -1,9 +1,10 @@
 # 回合制在线对战 Demo
 
-这款 Demo 是用 LeanCloud 实时对战和 Client Engine 实现的一款回合制对战游戏，全部服务端及客户端的代码总共花费了约 7 天的时间。试玩链接：https://turn-game.leanapp.cn
+这款 Demo 是用 LeanCloud [实时对战](https://leancloud.cn/docs/multiplayer-guide-js.html)和 [Client Engine](https://leancloud.cn/docs/client-engine.html) 实现的一款回合制对战游戏，全部服务端及客户端的代码总共花费了约 7 天的时间。试玩链接：https://turn-game.leanapp.cn
 
 主要界面如下：
 
+<img src="https://user-images.githubusercontent.com/10130959/55139395-a51f7500-5170-11e9-9eb8-26d082e42d66.png" width="400" />
 
 ## 启动游戏
 ### 服务端
