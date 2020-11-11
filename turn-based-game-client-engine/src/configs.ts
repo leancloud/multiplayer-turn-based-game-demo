@@ -1,6 +1,7 @@
 const APP_ID = process.env.LEANCLOUD_APP_ID!;
 const APP_KEY = process.env.LEANCLOUD_APP_KEY!;
-const MASTER_KEY =  process.env.LEANCLOUD_APP_MASTER_KEY!;
+const API_SERVER = process.env.LEANCLOUD_API_SERVER!;
+const MASTER_KEY = process.env.LEANCLOUD_APP_MASTER_KEY!;
 if (APP_ID === undefined) {
   throw new Error("LEANCLOUD_APP_ID not set");
 }
@@ -11,8 +12,4 @@ if (MASTER_KEY === undefined) {
   throw new Error("LEANCLOUD_APP_MASTER_KEY not set");
 }
 
-export {
-  APP_ID,
-  APP_KEY,
-  MASTER_KEY,
-};
+export { APP_ID, APP_KEY, API_SERVER, MASTER_KEY };
