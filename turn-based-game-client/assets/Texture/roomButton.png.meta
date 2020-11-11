@@ -1,13 +1,18 @@
 {
-  "ver": "2.2.0",
+  "ver": "2.3.5",
   "uuid": "b5b7db71-f7e0-4119-b2db-2544bd44d0be",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 256,
+  "height": 256,
+  "platformSettings": {},
   "subMetas": {
     "roomButton": {
-      "ver": "1.0.3",
+      "ver": "1.0.4",
       "uuid": "208c84c7-10c8-45e4-853d-1738a2361422",
       "rawTextureUuid": "b5b7db71-f7e0-4119-b2db-2544bd44d0be",
       "trimType": "auto",
