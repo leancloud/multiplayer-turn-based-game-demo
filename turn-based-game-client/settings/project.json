@@ -37,10 +37,12 @@
     "height": 640,
     "width": 960
   },
-  "start-scene": "current",
-  "use-customize-simulator": false,
+  "start-scene": "cc9f9e91-8dbb-4ea3-b3a6-c75e4cc3e485",
+  "use-customize-simulator": true,
   "use-project-simulator-setting": false,
   "migrate-history": [
     "cloud-function"
-  ]
+  ],
+  "preview-port": 7456,
+  "clear-simulator-cache": true
 }

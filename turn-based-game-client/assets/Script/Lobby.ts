@@ -10,13 +10,12 @@
 
 const { ccclass, property } = cc._decorator;
 import { global } from './Global';
-import { Client, CreateRoomFlag, Event, Room } from "@leancloud/play";
+import { Client } from '@leancloud/play';
 
 @ccclass
 export default class NewClass extends cc.Component {
-
   @property(cc.Label)
-  userNameLabel: cc.Label =  null;
+  userNameLabel: cc.Label = null;
 
   @property(cc.Button)
   matchmakinggButton: cc.Button = null;
@@ -39,24 +38,22 @@ export default class NewClass extends cc.Component {
   // update (dt) {}
 
   async onMatchmakingButtonClicked() {
-    const { roomName } = await (await fetch(
-      global.roomRequestUrl,
-      {
-        method: "POST",
+    const { roomName } = await (
+      await fetch(global.roomRequestUrl, {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json"
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          playerId: global.client.userId
-        })
-      }
-    )).json();
-    
+          playerId: global.client.userId,
+        }),
+      })
+    ).json();
+
     this.matchmakingLabel.string = '正在等待对手......';
     this.matchmakingLabel.node.active = true;
     this.matchmakinggButton.node.active = false;
 
     this.client.joinRoom(roomName);
-
   }
 }

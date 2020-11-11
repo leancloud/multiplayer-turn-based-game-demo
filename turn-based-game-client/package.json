@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@leancloud/play": "^0.18.0-beta.0"
+    "@leancloud/play": "^1.0.0"
   }
 }

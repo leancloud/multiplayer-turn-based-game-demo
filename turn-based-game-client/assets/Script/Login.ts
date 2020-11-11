@@ -9,12 +9,11 @@
 //  - [English] http://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
 const { ccclass, property } = cc._decorator;
-import { Client } from "@leancloud/play";
+import { Client } from '@leancloud/play';
 import { global } from './Global';
 
 @ccclass
 export default class NewClass extends cc.Component {
-
   @property(cc.EditBox)
   userIdEditBox: cc.EditBox = null;
 
@@ -36,6 +35,7 @@ export default class NewClass extends cc.Component {
     const client = new Client({
       appId: global.APP_ID,
       appKey: global.APP_KEY,
+      playServer: global.PLAY_SERVER,
       userId: this.userIdEditBox.string,
     });
     await client.connect();
