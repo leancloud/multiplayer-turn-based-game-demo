@@ -11,15 +11,15 @@
 const { ccclass, property } = cc._decorator;
 import Hero from './Hero';
 import { global } from './Global';
-import { Client, ReceiverGroup, Player } from "@leancloud/play";
+import { CustomEvent } from './Events';
+import { Client, ReceiverGroup, Player } from '@leancloud/play';
 
 const ATTACK_ACTION = 1;
 const DEFEND_ACTION = 2;
-const RESTORE_ACTION = 3
+const RESTORE_ACTION = 3;
 
 @ccclass
 export default class NewClass extends cc.Component {
-
   @property(cc.Prefab)
   heroGirlPrefab: cc.Prefab = null;
 
@@ -57,27 +57,30 @@ export default class NewClass extends cc.Component {
   client: Client = null;
 
   @property()
-  choices: { [heroName: string]: any; } = {};
+  choices: { [heroName: string]: any } = {};
 
   // 每个人行动时的动画播放时间，单位 ms
   @property()
   animTime: number = 800;
 
-  
-
-
   // LIFE-CYCLE CALLBACKS:
   onLoad() {
     this.node.on('begin-round-anim', async (data) => {
-      await Promise.all(Object.keys(data).map((actorId) => {
-        if (actorId === String(this.myHero.getComponent(Hero).player.actorId)) {
-          this.choices[this.myHero.name] = data[actorId];
-        }
+      await Promise.all(
+        Object.keys(data).map((actorId) => {
+          if (
+            actorId === String(this.myHero.getComponent(Hero).player.actorId)
+          ) {
+            this.choices[this.myHero.name] = data[actorId];
+          }
 
-        if (actorId === String(this.rivalHero.getComponent(Hero).player.actorId)) {
-          this.choices[this.rivalHero.name] = data[actorId];
-        }
-      }))
+          if (
+            actorId === String(this.rivalHero.getComponent(Hero).player.actorId)
+          ) {
+            this.choices[this.rivalHero.name] = data[actorId];
+          }
+        })
+      );
 
       // 播放动画
       this.playActions();
@@ -99,8 +102,7 @@ export default class NewClass extends cc.Component {
       setTimeout(() => {
         this.gameOver();
       }, this.animTime * 2);
-
-    })
+    });
   }
 
   start() {
@@ -112,7 +114,7 @@ export default class NewClass extends cc.Component {
     this.choices = {
       [this.myHero.name]: null,
       [this.rivalHero.name]: null,
-    }
+    };
   }
 
   // update (dt) {}
@@ -120,42 +122,49 @@ export default class NewClass extends cc.Component {
   // BUTTON EVENTS
   async onAttackButtonClicked() {
     const eventData = {
-      'action': ATTACK_ACTION,
-    }
+      action: ATTACK_ACTION,
+    };
 
-    await this.client.sendEvent('action', eventData, { receiverGroup: ReceiverGroup.MasterClient });
+    await this.client.sendEvent(CustomEvent.action, eventData, {
+      receiverGroup: ReceiverGroup.MasterClient,
+    });
     this.hideActionButtons();
-
   }
 
   async onDefendButtonClicked() {
     const eventData = {
-      'action': DEFEND_ACTION,
-    }
+      action: DEFEND_ACTION,
+    };
 
-    await this.client.sendEvent('action', eventData, { receiverGroup: ReceiverGroup.MasterClient });
+    await this.client.sendEvent(CustomEvent.action, eventData, {
+      receiverGroup: ReceiverGroup.MasterClient,
+    });
     this.hideActionButtons();
   }
 
-  async onRestoreButtonClicked () {
+  async onRestoreButtonClicked() {
     const eventData = {
-      'action': RESTORE_ACTION,
-    }
+      action: RESTORE_ACTION,
+    };
 
-    await this.client.sendEvent('action', eventData, { receiverGroup: ReceiverGroup.MasterClient });
+    await this.client.sendEvent(CustomEvent.action, eventData, {
+      receiverGroup: ReceiverGroup.MasterClient,
+    });
     this.hideActionButtons();
   }
 
-  async onBackButtonClicked () {
+  async onBackButtonClicked() {
     await this.client.leaveRoom();
     cc.director.loadScene('Lobby');
   }
 
   // CUSTOM METHODS
   drawHeros() {
-    const rivalPlayer = this.client.room.playerList.find((player, index, array) => {
-      return (!player.isLocal && !player.isMaster);
-    });
+    const rivalPlayer = this.client.room.playerList.find(
+      (player, index, array) => {
+        return !player.isLocal && !player.isMaster;
+      }
+    );
 
     let rivalHero: cc.Node;
     const rivalHeroName = rivalPlayer.customProperties.heroName;
@@ -178,7 +187,9 @@ export default class NewClass extends cc.Component {
 
     this.rivalHero = rivalHero;
     this.rivalHero.scaleX = -1;
-    this.rivalHero.getComponent(Hero).properties.originLocationX = this.rivalHero.x;
+    this.rivalHero.getComponent(
+      Hero
+    ).properties.originLocationX = this.rivalHero.x;
     const rivalHeroScript = this.rivalHero.getComponent(Hero);
     rivalHeroScript.updateNameLabel('对方');
     const rivalHeroNameLabelNode = this.rivalHero.getChildByName('NameLabel');
@@ -243,13 +254,17 @@ export default class NewClass extends cc.Component {
   }
 
   playActions() {
-    if (this.myHero.getComponent(Hero).properties.speed >= this.rivalHero.getComponent(Hero).properties.speed) { // 我的速度快，我先行动
+    if (
+      this.myHero.getComponent(Hero).properties.speed >=
+      this.rivalHero.getComponent(Hero).properties.speed
+    ) {
+      // 我的速度快，我先行动
       this.heroAct(this.myHero, this.rivalHero);
       setTimeout(() => {
         this.heroAct(this.rivalHero, this.myHero);
       }, this.animTime);
-
-    } else { // 对手速度快，对手先行动
+    } else {
+      // 对手速度快，对手先行动
       this.heroAct(this.rivalHero, this.myHero);
       setTimeout(() => {
         this.heroAct(this.myHero, this.rivalHero);
@@ -269,40 +284,56 @@ export default class NewClass extends cc.Component {
     const fromAnim = this.playAttackAnim(fromHero);
     this.playDefendAnim(toHero);
 
-    fromAnim.once('finished', () => {
-      if (fromHero.getComponent(Hero).properties.isMoveAttack) {
-        fromHero.x = fromHero.getComponent(Hero).properties.originLocationX;
-      }
-
-      // toHero 掉血
-      const toChoice = this.choices[toHero.name];
-
-      if (toChoice !== DEFEND_ACTION) {
-        toHero.getComponent(Hero).properties.currentBloodValue -= fromHero.getComponent(Hero).properties.attackValue;
-
-      } else {
-        if (toHero.getComponent(Hero).properties.defendValue < fromHero.getComponent(Hero).properties.attackValue) {
-          const toHerobloodValue = toHero.getComponent(Hero).properties.currentBloodValue;
-          const toHeroDefendValue = toHero.getComponent(Hero).properties.defendValue;
-          toHero.getComponent(Hero).properties.currentBloodValue = toHerobloodValue + toHeroDefendValue - fromHero.getComponent(Hero).properties.attackValue;
+    fromAnim.once(
+      'finished',
+      () => {
+        if (fromHero.getComponent(Hero).properties.isMoveAttack) {
+          fromHero.x = fromHero.getComponent(Hero).properties.originLocationX;
         }
-      }
 
-      // 更新 to 的进度条
-      toHero.getComponent(Hero).updateProgressBar();
-    }, this)
+        // toHero 掉血
+        const toChoice = this.choices[toHero.name];
 
+        if (toChoice !== DEFEND_ACTION) {
+          toHero.getComponent(
+            Hero
+          ).properties.currentBloodValue -= fromHero.getComponent(
+            Hero
+          ).properties.attackValue;
+        } else {
+          if (
+            toHero.getComponent(Hero).properties.defendValue <
+            fromHero.getComponent(Hero).properties.attackValue
+          ) {
+            const toHerobloodValue = toHero.getComponent(Hero).properties
+              .currentBloodValue;
+            const toHeroDefendValue = toHero.getComponent(Hero).properties
+              .defendValue;
+            toHero.getComponent(Hero).properties.currentBloodValue =
+              toHerobloodValue +
+              toHeroDefendValue -
+              fromHero.getComponent(Hero).properties.attackValue;
+          }
+        }
+
+        // 更新 to 的进度条
+        toHero.getComponent(Hero).updateProgressBar();
+      },
+      this
+    );
   }
 
-  defend(hero: cc.Node) {
-
-  }
+  defend(hero: cc.Node) {}
 
   restore(hero: cc.Node) {
-    const newBloodValue = hero.getComponent(Hero).properties.currentBloodValue + hero.getComponent(Hero).properties.restoreValue;
+    const newBloodValue =
+      hero.getComponent(Hero).properties.currentBloodValue +
+      hero.getComponent(Hero).properties.restoreValue;
 
     if (newBloodValue > hero.getComponent(Hero).properties.totalBloodValue) {
-      hero.getComponent(Hero).properties.currentBloodValue = hero.getComponent(Hero).properties.totalBloodValue;
+      hero.getComponent(Hero).properties.currentBloodValue = hero.getComponent(
+        Hero
+      ).properties.totalBloodValue;
     } else {
       hero.getComponent(Hero).properties.currentBloodValue = newBloodValue;
     }
@@ -328,11 +359,10 @@ export default class NewClass extends cc.Component {
     }
   }
 
-
   heroDefaultAnim(hero: cc.Node) {
     const myHeroAnim = hero.getComponent(cc.Animation);
     const animDefaultClipName = hero.name + 'Default';
-    const myHeroDefaultAnim = myHeroAnim.playAdditive(animDefaultClipName)
+    const myHeroDefaultAnim = myHeroAnim.playAdditive(animDefaultClipName);
     myHeroDefaultAnim.wrapMode = cc.WrapMode.Loop;
     myHeroDefaultAnim.repeatCount = Infinity;
   }
@@ -344,7 +374,7 @@ export default class NewClass extends cc.Component {
 
     // this.gameOverNode.getComponent(GameOver).showGameOver('游戏结束');
     // this.gameOverNode.active = true;
-    this.gameResultLabel.string = '游戏结束'
+    this.gameResultLabel.string = '游戏结束';
     this.gameResultLabel.node.active = true;
     this.backButton.node.active = true;
   }

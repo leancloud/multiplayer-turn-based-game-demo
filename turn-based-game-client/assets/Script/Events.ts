@@ -10,11 +10,17 @@
 
 const { ccclass, property } = cc._decorator;
 import { global } from './Global';
-import { Client, Event } from "@leancloud/play";
+import { Client, Event } from '@leancloud/play';
+
+export enum CustomEvent {
+  gameStart,
+  gameOver,
+  action,
+  beginRoundAnim,
+}
 
 @ccclass
 export default class NewClass extends cc.Component {
-
   @property(cc.Label)
   label: cc.Label = null;
 
@@ -32,22 +38,21 @@ export default class NewClass extends cc.Component {
     cc.game.addPersistRootNode(this.node);
     this.client = global.client;
 
-    this.client.on(Event.CUSTOM_EVENT, event => {
+    this.client.on(Event.CUSTOM_EVENT, (event) => {
       const { eventId, eventData } = event;
 
-      if (eventId === 'game-start') {
-        cc.director.loadScene('Room');
-      }
-
-      if (eventId === 'begin-round-anim') {
-        cc.find('RoomCanvas').emit('begin-round-anim', eventData);
-      }
-
-      if (eventId === 'game-over') {
-        cc.find('RoomCanvas').emit('game-over', eventData);
+      switch (eventId) {
+        case CustomEvent.gameStart:
+          cc.director.loadScene('Room');
+          break;
+        case CustomEvent.beginRoundAnim:
+          cc.find('RoomCanvas').emit('begin-round-anim', eventData);
+          break;
+        case CustomEvent.gameOver:
+          cc.find('RoomCanvas').emit('game-over', eventData);
+          break;
       }
     });
-
   }
 
   // update (dt) {}

@@ -19,15 +19,15 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@leancloud/client-engine": "^0.8.0-beta.0",
-    "@leancloud/play": "^0.18.0-beta.0",
+    "@leancloud/client-engine": "^1.0.0",
+    "@leancloud/play": "^1.0.0",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "debug": "^4.1.1",
     "express": "^4.16.4",
     "express-basic-auth": "^1.1.6",
     "lodash": "^4.17.11",
-    "rxjs": "^6.4.0",
+    "rxjs": "^6.6.3",
     "source-map-support": "^0.5.11"
   },
   "engines": {
@@ -40,6 +40,6 @@
     "@types/lodash": "^4.14.123",
     "axios": "^0.18.0",
     "tslint": "^5.14.0",
-    "typescript": "^3.3.3333"
+    "typescript": "^4.0.5"
   }
 }
